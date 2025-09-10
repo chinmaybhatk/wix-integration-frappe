@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include wix_integration *.css
+recursive-include wix_integration *.csv
+recursive-include wix_integration *.html
+recursive-include wix_integration *.ico
+recursive-include wix_integration *.js
+recursive-include wix_integration *.json
+recursive-include wix_integration *.md
+recursive-include wix_integration *.png
+recursive-include wix_integration *.py
+recursive-include wix_integration *.svg
+recursive-include wix_integration *.txt
+recursive-exclude wix_integration *.pyc
