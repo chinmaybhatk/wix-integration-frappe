@@ -1,3 +1,2 @@
 # Patches for Wix Integration
-wix_integration.patches.v1_0.setup_custom_fields
-wix_integration.patches.v1_0.create_default_settings
+# Initial installation - no patches required
