@@ -7,7 +7,7 @@ name = "wix_integration"
 version = "1.0.0"
 description = "Wix ecommerce integration for unified CRM, inventory management, and order processing"
 authors = [
-    {name = "KokoFresh", email = "admin@kokofresh.in"}
+    {name = "Chinmay Bhatk", email = "chinmaybhatk@gmail.com"}
 ]
 license = "MIT"
 readme = "README.md"

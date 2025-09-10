@@ -2,11 +2,11 @@ from . import __version__ as app_version
 
 app_name = "wix_integration"
 app_title = "Wix Integration"
-app_publisher = "KokoFresh"
+app_publisher = "Chinmay Bhatk"
 app_description = "Wix ecommerce integration for unified CRM, inventory management, and order processing"
 app_icon = "octicon octicon-plug"
 app_color = "blue"
-app_email = "admin@kokofresh.in"
+app_email = "chinmaybhatk@gmail.com"
 app_license = "MIT"
 
 # Document Events

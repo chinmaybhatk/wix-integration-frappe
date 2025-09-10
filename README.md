@@ -355,8 +355,8 @@ Key metrics to monitor:
 
 ### Commercial Support
 For commercial support and customization, contact:
-- Email: support@kokofresh.in
-- Website: https://kokofresh.in
+- Email: chinmaybhatk@gmail.com
+- GitHub: https://github.com/chinmaybhatk
 
 ## License
 
