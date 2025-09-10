@@ -1,0 +1,226 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2024-09-10 10:05:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "item_code",
+  "item_name",
+  "wix_product_id",
+  "wix_variant_id",
+  "column_break_5",
+  "sync_status",
+  "last_sync_time",
+  "sync_direction",
+  "is_variant",
+  "section_break_10",
+  "wix_product_name",
+  "wix_sku",
+  "wix_price",
+  "wix_inventory_tracking",
+  "column_break_15",
+  "frappe_price",
+  "frappe_stock_qty",
+  "price_difference",
+  "stock_difference",
+  "section_break_20",
+  "error_log",
+  "last_error_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "WPM-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wix_product_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Wix Product ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "wix_variant_id",
+   "fieldtype": "Data",
+   "label": "Wix Variant ID"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "sync_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Sync Status",
+   "options": "Pending\nSynced\nError\nConflict"
+  },
+  {
+   "fieldname": "last_sync_time",
+   "fieldtype": "Datetime",
+   "label": "Last Sync Time"
+  },
+  {
+   "default": "Bidirectional",
+   "fieldname": "sync_direction",
+   "fieldtype": "Select",
+   "label": "Sync Direction",
+   "options": "Bidirectional\nFrappe to Wix\nWix to Frappe\nDisabled"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_variant",
+   "fieldtype": "Check",
+   "label": "Is Variant"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break",
+   "label": "Wix Product Details"
+  },
+  {
+   "fieldname": "wix_product_name",
+   "fieldtype": "Data",
+   "label": "Wix Product Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wix_sku",
+   "fieldtype": "Data",
+   "label": "Wix SKU",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wix_price",
+   "fieldtype": "Currency",
+   "label": "Wix Price",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "wix_inventory_tracking",
+   "fieldtype": "Check",
+   "label": "Wix Inventory Tracking",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "frappe_price",
+   "fieldtype": "Currency",
+   "label": "Frappe Price",
+   "read_only": 1
+  },
+  {
+   "fieldname": "frappe_stock_qty",
+   "fieldtype": "Float",
+   "label": "Frappe Stock Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "price_difference",
+   "fieldtype": "Currency",
+   "label": "Price Difference",
+   "read_only": 1
+  },
+  {
+   "fieldname": "stock_difference",
+   "fieldtype": "Float",
+   "label": "Stock Difference",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_20",
+   "fieldtype": "Section Break",
+   "label": "Error Details"
+  },
+  {
+   "fieldname": "error_log",
+   "fieldtype": "Long Text",
+   "label": "Error Log"
+  },
+  {
+   "fieldname": "last_error_time",
+   "fieldtype": "Datetime",
+   "label": "Last Error Time"
+  }
+ ],
+ "has_web_view": 0,
+ "hide_heading": 0,
+ "hide_toolbar": 0,
+ "idx": 0,
+ "in_create": 0,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "max_attachments": 0,
+ "modified": "2024-09-10 10:05:00.000000",
+ "modified_by": "Administrator",
+ "module": "Wix Integration",
+ "name": "Wix Product Mapping",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Item Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "read_only": 0,
+ "read_only_onload": 0,
+ "show_name_in_global_search": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "item_name",
+ "track_changes": 1,
+ "track_seen": 0,
+ "track_views": 0
+}

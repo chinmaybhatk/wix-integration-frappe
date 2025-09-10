@@ -1,0 +1,236 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:title",
+ "creation": "2024-09-10 10:00:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "enabled",
+  "section_break_3",
+  "wix_app_id",
+  "wix_app_secret",
+  "wix_instance_id",
+  "wix_refresh_token",
+  "wix_access_token",
+  "wix_webhook_secret",
+  "section_break_10",
+  "sync_products",
+  "sync_inventory",
+  "sync_orders",
+  "sync_customers",
+  "column_break_15",
+  "auto_create_items",
+  "auto_create_customers",
+  "inventory_sync_frequency",
+  "section_break_19",
+  "default_warehouse",
+  "default_price_list",
+  "default_customer_group",
+  "default_territory",
+  "section_break_24",
+  "last_sync_time",
+  "sync_status",
+  "error_log"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Wix API Configuration"
+  },
+  {
+   "fieldname": "wix_app_id",
+   "fieldtype": "Data",
+   "label": "Wix App ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "wix_app_secret",
+   "fieldtype": "Password",
+   "label": "Wix App Secret",
+   "reqd": 1
+  },
+  {
+   "fieldname": "wix_instance_id",
+   "fieldtype": "Data",
+   "label": "Wix Instance ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "wix_refresh_token",
+   "fieldtype": "Password",
+   "label": "Wix Refresh Token"
+  },
+  {
+   "fieldname": "wix_access_token",
+   "fieldtype": "Password",
+   "label": "Wix Access Token"
+  },
+  {
+   "fieldname": "wix_webhook_secret",
+   "fieldtype": "Password",
+   "label": "Wix Webhook Secret"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break",
+   "label": "Sync Settings"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_products",
+   "fieldtype": "Check",
+   "label": "Sync Products"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_inventory",
+   "fieldtype": "Check",
+   "label": "Sync Inventory"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_orders",
+   "fieldtype": "Check",
+   "label": "Sync Orders"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_customers",
+   "fieldtype": "Check",
+   "label": "Sync Customers"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_create_items",
+   "fieldtype": "Check",
+   "label": "Auto Create Items"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_create_customers",
+   "fieldtype": "Check",
+   "label": "Auto Create Customers"
+  },
+  {
+   "default": "5",
+   "fieldname": "inventory_sync_frequency",
+   "fieldtype": "Int",
+   "label": "Inventory Sync Frequency (minutes)"
+  },
+  {
+   "fieldname": "section_break_19",
+   "fieldtype": "Section Break",
+   "label": "Default Settings"
+  },
+  {
+   "fieldname": "default_warehouse",
+   "fieldtype": "Link",
+   "label": "Default Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "default_price_list",
+   "fieldtype": "Link",
+   "label": "Default Price List",
+   "options": "Price List"
+  },
+  {
+   "fieldname": "default_customer_group",
+   "fieldtype": "Link",
+   "label": "Default Customer Group",
+   "options": "Customer Group"
+  },
+  {
+   "fieldname": "default_territory",
+   "fieldtype": "Link",
+   "label": "Default Territory",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break",
+   "label": "Sync Status"
+  },
+  {
+   "fieldname": "last_sync_time",
+   "fieldtype": "Datetime",
+   "label": "Last Sync Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sync_status",
+   "fieldtype": "Select",
+   "label": "Sync Status",
+   "options": "Idle\nSyncing\nError\nSuccess",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error_log",
+   "fieldtype": "Long Text",
+   "label": "Error Log",
+   "read_only": 1
+  }
+ ],
+ "has_web_view": 0,
+ "hide_heading": 0,
+ "hide_toolbar": 0,
+ "idx": 0,
+ "in_create": 0,
+ "is_submittable": 0,
+ "issingle": 1,
+ "istable": 0,
+ "max_attachments": 0,
+ "modified": "2024-09-10 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Wix Integration",
+ "name": "Wix Integration Settings",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "read_only": 0,
+ "read_only_onload": 0,
+ "show_name_in_global_search": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "title",
+ "track_changes": 1,
+ "track_seen": 0,
+ "track_views": 0
+}

@@ -1,0 +1,247 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2024-09-10 10:10:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "customer",
+  "customer_name",
+  "wix_customer_id",
+  "email",
+  "column_break_5",
+  "sync_status",
+  "last_sync_time",
+  "sync_direction",
+  "is_guest_customer",
+  "section_break_10",
+  "wix_first_name",
+  "wix_last_name",
+  "wix_phone",
+  "wix_email",
+  "column_break_15",
+  "frappe_customer_name",
+  "frappe_email_id",
+  "frappe_mobile_no",
+  "total_orders",
+  "section_break_20",
+  "billing_address",
+  "shipping_address",
+  "section_break_22",
+  "error_log",
+  "last_error_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "WCM-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wix_customer_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Wix Customer ID",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "sync_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Sync Status",
+   "options": "Pending\nSynced\nError\nConflict"
+  },
+  {
+   "fieldname": "last_sync_time",
+   "fieldtype": "Datetime",
+   "label": "Last Sync Time"
+  },
+  {
+   "default": "Bidirectional",
+   "fieldname": "sync_direction",
+   "fieldtype": "Select",
+   "label": "Sync Direction",
+   "options": "Bidirectional\nFrappe to Wix\nWix to Frappe\nDisabled"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_guest_customer",
+   "fieldtype": "Check",
+   "label": "Is Guest Customer"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break",
+   "label": "Wix Customer Details"
+  },
+  {
+   "fieldname": "wix_first_name",
+   "fieldtype": "Data",
+   "label": "Wix First Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wix_last_name",
+   "fieldtype": "Data",
+   "label": "Wix Last Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wix_phone",
+   "fieldtype": "Data",
+   "label": "Wix Phone",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wix_email",
+   "fieldtype": "Data",
+   "label": "Wix Email",
+   "options": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "frappe_customer_name",
+   "fieldtype": "Data",
+   "label": "Frappe Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "frappe_email_id",
+   "fieldtype": "Data",
+   "label": "Frappe Email ID",
+   "options": "Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "frappe_mobile_no",
+   "fieldtype": "Data",
+   "label": "Frappe Mobile No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_orders",
+   "fieldtype": "Int",
+   "label": "Total Orders",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_20",
+   "fieldtype": "Section Break",
+   "label": "Address Information"
+  },
+  {
+   "fieldname": "billing_address",
+   "fieldtype": "Long Text",
+   "label": "Billing Address"
+  },
+  {
+   "fieldname": "shipping_address",
+   "fieldtype": "Long Text",
+   "label": "Shipping Address"
+  },
+  {
+   "fieldname": "section_break_22",
+   "fieldtype": "Section Break",
+   "label": "Error Details"
+  },
+  {
+   "fieldname": "error_log",
+   "fieldtype": "Long Text",
+   "label": "Error Log"
+  },
+  {
+   "fieldname": "last_error_time",
+   "fieldtype": "Datetime",
+   "label": "Last Error Time"
+  }
+ ],
+ "has_web_view": 0,
+ "hide_heading": 0,
+ "hide_toolbar": 0,
+ "idx": 0,
+ "in_create": 0,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "max_attachments": 0,
+ "modified": "2024-09-10 10:10:00.000000",
+ "modified_by": "Administrator",
+ "module": "Wix Integration",
+ "name": "Wix Customer Mapping",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "read_only": 0,
+ "read_only_onload": 0,
+ "show_name_in_global_search": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "customer_name",
+ "track_changes": 1,
+ "track_seen": 0,
+ "track_views": 0
+}

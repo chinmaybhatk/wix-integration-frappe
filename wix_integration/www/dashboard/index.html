@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wix Integration Dashboard</title>
+    <link rel="stylesheet" href="/assets/wix_integration/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Wix Integration Dashboard</h1>
+            <div class="last-updated">
+                Last Updated: <span id="lastUpdated">-</span>
+            </div>
+        </header>
+
+        <!-- Status Overview -->
+        <section class="status-overview">
+            <div class="status-card">
+                <h3>Integration Status</h3>
+                <div class="status-indicator" id="integrationStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Loading...</span>
+                </div>
+            </div>
+            <div class="status-card">
+                <h3>Last Sync</h3>
+                <div id="lastSyncTime" class="metric-value">-</div>
+            </div>
+            <div class="status-card">
+                <h3>Total Mappings</h3>
+                <div id="totalMappings" class="metric-value">-</div>
+            </div>
+            <div class="status-card">
+                <h3>Sync Success Rate</h3>
+                <div id="syncSuccessRate" class="metric-value">-</div>
+            </div>
+        </section>
+
+        <!-- Sync Statistics -->
+        <section class="sync-stats">
+            <div class="stats-section">
+                <h2>Product Synchronization</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Products</span>
+                        <span class="stat-value" id="totalProducts">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Synced</span>
+                        <span class="stat-value synced" id="syncedProducts">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Errors</span>
+                        <span class="stat-value error" id="errorProducts">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Pending</span>
+                        <span class="stat-value pending" id="pendingProducts">-</span>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="productSyncProgress"></div>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <h2>Order Processing</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Orders</span>
+                        <span class="stat-value" id="totalOrders">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Processed</span>
+                        <span class="stat-value synced" id="processedOrders">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Errors</span>
+                        <span class="stat-value error" id="errorOrders">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Recent (24h)</span>
+                        <span class="stat-value" id="recentOrders">-</span>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="orderSyncProgress"></div>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <h2>Customer Management</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Customers</span>
+                        <span class="stat-value" id="totalCustomers">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Synced</span>
+                        <span class="stat-value synced" id="syncedCustomers">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Errors</span>
+                        <span class="stat-value error" id="errorCustomers">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Recent (24h)</span>
+                        <span class="stat-value" id="recentCustomers">-</span>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="customerSyncProgress"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts-section">
+            <div class="chart-container">
+                <h3>Sync Activity (Last 7 Days)</h3>
+                <canvas id="syncActivityChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Error Distribution</h3>
+                <canvas id="errorDistributionChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Actions Section -->
+        <section class="actions-section">
+            <h2>Quick Actions</h2>
+            <div class="actions-grid">
+                <button class="action-btn primary" onclick="triggerFullSync()">
+                    <span class="btn-icon">🔄</span>
+                    Full Sync
+                </button>
+                <button class="action-btn secondary" onclick="retryFailedSyncs()">
+                    <span class="btn-icon">⚠️</span>
+                    Retry Failed
+                </button>
+                <button class="action-btn secondary" onclick="viewSettings()">
+                    <span class="btn-icon">⚙️</span>
+                    Settings
+                </button>
+                <button class="action-btn secondary" onclick="viewLogs()">
+                    <span class="btn-icon">📋</span>
+                    View Logs
+                </button>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="recent-activity">
+            <h2>Recent Activity</h2>
+            <div class="activity-list" id="recentActivity">
+                <div class="loading">Loading recent activity...</div>
+            </div>
+        </section>
+
+        <!-- Error Alerts -->
+        <section class="error-alerts" id="errorAlerts" style="display: none;">
+            <h2>Error Alerts</h2>
+            <div class="alert-list" id="alertList"></div>
+        </section>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="/assets/wix_integration/js/dashboard.js"></script>
+</body>
+</html>
