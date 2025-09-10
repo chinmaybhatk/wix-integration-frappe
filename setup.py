@@ -1,18 +1,15 @@
 from setuptools import setup, find_packages
 import os
 
-# Read requirements
-install_requires = []
-if os.path.exists("requirements.txt"):
-    with open("requirements.txt") as f:
-        install_requires = [line.strip() for line in f.readlines() if line.strip() and not line.startswith("#")]
+# Read requirements - only external dependencies
+install_requires = [
+    "requests>=2.28.0",
+    "python-dateutil>=2.8.0", 
+    "cryptography>=3.4.8"
+]
 
-# Read version
+# Version
 version = "1.0.0"
-try:
-    from wix_integration import __version__ as version
-except ImportError:
-    pass
 
 setup(
     name="wix_integration",
@@ -28,18 +25,15 @@ setup(
     include_package_data=True,
     install_requires=install_requires,
     python_requires=">=3.8",
+    license="MIT",
     classifiers=[
         "Development Status :: 4 - Beta",
-        "Environment :: Web Environment",
-        "Framework :: Frappe",
+        "Environment :: Web Environment", 
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
-        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
-        "Topic :: Office/Business :: Financial :: Accounting",
     ],
 )

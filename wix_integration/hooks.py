@@ -1,6 +1,5 @@
-from . import __version__ as app_version
-
 app_name = "wix_integration"
+app_version = "1.0.0"
 app_title = "Wix Integration"
 app_publisher = "Chinmay Bhatk"
 app_description = "Wix ecommerce integration for unified CRM, inventory management, and order processing"
