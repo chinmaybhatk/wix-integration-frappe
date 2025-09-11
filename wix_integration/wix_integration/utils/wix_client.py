@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import time
 
 class WixClient:
-	"""Wix API Client for handling all Wix API interactions"""
+	"""Wix API Client for handling all Wix API interactions - Updated for Catalog V3 (2025)"""
 	
 	def __init__(self):
 		self.settings = frappe.get_single("Wix Integration Settings")
@@ -81,35 +81,58 @@ class WixClient:
 			frappe.log_error(f"Wix API Error: {str(e)}", "Wix Integration")
 			return None
 	
-	# Product API methods
-	def get_products(self, limit=100, offset=0):
-		"""Get products from Wix"""
-		params = {
-			"query": {
-				"limit": limit,
-				"offset": offset
+	# Product API methods - Catalog V3
+	def get_products(self, limit=100, cursor=None, search_expression=None):
+		"""Get products from Wix using Catalog V3 Search API"""
+		request_body = {
+			"search": {},
+			"paging": {
+				"limit": min(limit, 100)  # V3 API max is 100
 			}
 		}
-		return self.make_request("POST", "/stores/v1/products/query", data=params)
+		
+		# Add cursor for pagination (V3 uses cursor-based pagination)
+		if cursor:
+			request_body["paging"]["cursor"] = cursor
+			
+		# Add search expression if provided
+		if search_expression:
+			request_body["search"]["expression"] = search_expression
+		
+		return self.make_request("POST", "/stores/v3/products/search", data=request_body)
 	
 	def get_product(self, product_id):
-		"""Get single product from Wix"""
-		return self.make_request("GET", f"/stores/v1/products/{product_id}")
+		"""Get single product from Wix using Catalog V3"""
+		# Search for specific product by ID using V3 search API
+		search_filter = {
+			"id": {
+				"$eq": product_id
+			}
+		}
+		request_body = {
+			"search": {
+				"filter": search_filter
+			},
+			"paging": {
+				"limit": 1
+			}
+		}
+		return self.make_request("POST", "/stores/v3/products/search", data=request_body)
 	
 	def create_product(self, product_data):
-		"""Create product in Wix"""
-		return self.make_request("POST", "/stores/v1/products", data={"product": product_data})
+		"""Create product in Wix using Catalog V3"""
+		return self.make_request("POST", "/stores/v3/products", data=product_data)
 	
 	def update_product(self, product_id, product_data):
-		"""Update product in Wix"""
-		return self.make_request("PATCH", f"/stores/v1/products/{product_id}", data={"product": product_data})
+		"""Update product in Wix using Catalog V3"""
+		return self.make_request("PATCH", f"/stores/v3/products/{product_id}", data=product_data)
 	
 	def delete_product(self, product_id):
-		"""Delete product in Wix"""
-		return self.make_request("DELETE", f"/stores/v1/products/{product_id}")
+		"""Delete product in Wix using Catalog V3"""
+		return self.make_request("DELETE", f"/stores/v3/products/{product_id}")
 	
 	def update_inventory(self, product_id, variant_id=None, quantity=0):
-		"""Update inventory for a product/variant"""
+		"""Update inventory for a product/variant using Catalog V3"""
 		inventory_data = {
 			"inventoryItem": {
 				"trackQuantity": True,
@@ -118,15 +141,15 @@ class WixClient:
 		}
 		
 		if variant_id:
-			endpoint = f"/stores/v1/products/{product_id}/variants/{variant_id}/inventory"
+			endpoint = f"/stores/v3/products/{product_id}/variants/{variant_id}/inventory"
 		else:
-			endpoint = f"/stores/v1/products/{product_id}/inventory"
+			endpoint = f"/stores/v3/products/{product_id}/inventory"
 		
 		return self.make_request("PATCH", endpoint, data=inventory_data)
 	
-	# Order API methods
+	# Order API methods (Still V1 - No V3 equivalent as of 2025)
 	def get_orders(self, limit=100, offset=0, status=None):
-		"""Get orders from Wix"""
+		"""Get orders from Wix - Uses V1 API (no V3 version available)"""
 		query = {
 			"limit": limit,
 			"offset": offset
@@ -150,9 +173,9 @@ class WixClient:
 		"""Cancel order in Wix"""
 		return self.make_request("POST", f"/stores/v1/orders/{order_id}/cancel")
 	
-	# Customer API methods
+	# Customer API methods (Still V1 - No V3 equivalent as of 2025)
 	def get_customers(self, limit=100, offset=0):
-		"""Get customers from Wix"""
+		"""Get customers from Wix - Uses V1 API (no V3 version available)"""
 		params = {
 			"query": {
 				"limit": limit,
@@ -173,14 +196,41 @@ class WixClient:
 		"""Update customer in Wix"""
 		return self.make_request("PATCH", f"/stores/v1/customers/{customer_id}", data={"customer": customer_data})
 	
-	# Collection API methods
-	def get_collections(self):
-		"""Get product collections from Wix"""
-		return self.make_request("GET", "/stores/v1/collections")
+	# Collection API methods (Updated to V3)
+	def get_collections(self, limit=100, cursor=None):
+		"""Get product collections from Wix using Catalog V3"""
+		request_body = {
+			"paging": {
+				"limit": min(limit, 100)
+			}
+		}
+		
+		if cursor:
+			request_body["paging"]["cursor"] = cursor
+			
+		return self.make_request("POST", "/stores/v3/collections/search", data=request_body)
 	
-	def get_collection_products(self, collection_id):
-		"""Get products in a collection"""
-		return self.make_request("GET", f"/stores/v1/collections/{collection_id}/products")
+	def get_collection_products(self, collection_id, limit=100, cursor=None):
+		"""Get products in a collection using Catalog V3"""
+		# Search products filtered by collection
+		search_filter = {
+			"collections": {
+				"$hasSome": [collection_id]
+			}
+		}
+		request_body = {
+			"search": {
+				"filter": search_filter
+			},
+			"paging": {
+				"limit": min(limit, 100)
+			}
+		}
+		
+		if cursor:
+			request_body["paging"]["cursor"] = cursor
+			
+		return self.make_request("POST", "/stores/v3/products/search", data=request_body)
 	
 	# Webhook validation
 	def validate_webhook_signature(self, payload, signature):
@@ -230,7 +280,7 @@ class WixClient:
 		}
 	
 	def sync_product_from_frappe(self, item_code):
-		"""Sync a Frappe item to Wix"""
+		"""Sync a Frappe item to Wix using Catalog V3"""
 		try:
 			item_doc = frappe.get_doc("Item", item_code)
 			
@@ -253,23 +303,38 @@ class WixClient:
 					"actual_qty"
 				) or 0
 			
-			# Prepare product data for Wix
+			# Prepare product data for Wix Catalog V3 format
 			product_data = {
-				"name": item_doc.item_name,
-				"description": item_doc.description or "",
-				"sku": item_doc.item_code,
-				"visible": True,
-				"priceData": {
-					"price": str(price),
-					"currency": "USD"  # Should be configurable
-				},
-				"manageVariants": False,
-				"productType": "physical",
-				"inventory": {
-					"trackQuantity": True,
-					"quantity": int(stock_qty)
+				"product": {
+					"name": item_doc.item_name,
+					"description": item_doc.description or "",
+					"slug": item_code.lower().replace(" ", "-"),
+					"visible": True,
+					"productType": "physical",
+					"priceData": {
+						"price": str(price),
+						"currency": "USD"  # Should be configurable
+					},
+					"costAndProfitData": {
+						"itemCost": 0
+					},
+					"seoData": {
+						"tags": []
+					}
 				}
 			}
+			
+			# Add SKU and inventory data
+			if item_doc.item_code:
+				product_data["product"]["sku"] = item_doc.item_code
+			
+			if stock_qty >= 0:
+				product_data["product"]["manageVariants"] = False
+				product_data["product"]["stock"] = {
+					"trackInventory": True,
+					"quantity": int(stock_qty),
+					"inStock": stock_qty > 0
+				}
 			
 			# Check if product already exists in Wix
 			mapping = frappe.db.get_value("Wix Product Mapping", {"item_code": item_code}, "wix_product_id")

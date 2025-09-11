@@ -14,7 +14,7 @@ version = "1.0.0"
 setup(
     name="wix_integration",
     version=version,
-    description="Wix ecommerce integration for unified CRM, inventory management, and order processing",
+    description="Wix ecommerce integration for unified CRM, inventory management, and order processing (Frappe v14/v15)",
     long_description=open("README.md").read() if os.path.exists("README.md") else "",
     long_description_content_type="text/markdown",
     author="Chinmay Bhatk",

@@ -2,6 +2,8 @@
 
 A comprehensive Frappe custom app that provides seamless bidirectional synchronization between Wix ecommerce platform and Frappe/ERPNext for unified CRM, inventory management, and order processing.
 
+**🚀 Updated for 2025: Now supports Wix Catalog V3 API**
+
 ## Features
 
 ### 🔄 Bidirectional Data Synchronization
@@ -23,11 +25,13 @@ A comprehensive Frappe custom app that provides seamless bidirectional synchroni
 - **99.9%** data accuracy
 
 ### 🛠 Technical Features
+- **Wix Catalog V3 API support** (2025 ready)
 - OAuth 2.0 authentication with Wix
-- RESTful API integration
+- RESTful API integration with modern endpoints
 - Configurable sync directions
 - Performance monitoring dashboard
 - Error reporting and retry mechanisms
+- Backward compatibility with V1 APIs where needed
 
 ## Installation
 
